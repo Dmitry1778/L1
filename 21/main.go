@@ -6,26 +6,26 @@ type Target interface {
 	Operation()
 }
 
-// класс конкретного адаптера
+// ConcreteAdapter класс конкретного адаптера
 type ConcreteAdapter struct {
 	*Adaptee
 }
 
-// реализация метода интерфейса, реализующего вызов адаптируемого класса
+// Operation реализация метода интерфейса, реализующего вызов адаптируемого класса
 func (adapter *ConcreteAdapter) Operation() {
 	adapter.AdaptedOperation()
 }
 
-// адаптируемый класс
+// Adaptee адаптируемый класс
 type Adaptee struct {
 }
 
-// Метод адаптируемого класса, который нужно вызвать где-то
+// AdaptedOperation Метод адаптируемого класса, который нужно вызвать где-то
 func (adaptee *Adaptee) AdaptedOperation() {
 	fmt.Println("I am AdaptedOperation()")
 }
 
-// конструктор адаптера
+// NewAdapter конструктор адаптера
 func NewAdapter(adaptee *Adaptee) Target {
 	return &ConcreteAdapter{adaptee}
 }

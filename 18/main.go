@@ -20,6 +20,8 @@ func newInit() *counter {
 	return &counter{}
 }
 
+// Создаем счётчик до 1000
+// Используем mutex для того чтобы не потерять данные и счётчик ожидания для синхронизации выполнения горутины
 func (c *counter) init() int {
 	var wg sync.WaitGroup
 	for i := 0; i < 1000; i++ {

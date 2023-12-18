@@ -2,16 +2,14 @@ package main
 
 import "fmt"
 
-//страница 78
-
 func main() {
 	num := int64(48)
 
-	position := 3
+	position := 3 // позиция в которую хотим установить 1 или 0
 
-	bit := 1
+	bit := 1 // 1 или 0
 
-	fmt.Printf("%08b\n", uint64(num))
+	fmt.Printf("%08b\n", uint64(num)) // первоначальный вид
 
 	result := setBit(num, bit, position)
 	fmt.Println(result)
@@ -19,7 +17,7 @@ func main() {
 }
 
 func setBit(num int64, bitValue, pos int) int64 {
-
+	// Если позиция в которую мы хотим установить значение будет false то используем (объединение или set)
 	if setOrUnset(bitValue) {
 		return num &^ (1 << pos) // и не unset
 	}

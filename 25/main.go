@@ -3,9 +3,10 @@ package main
 import "time"
 
 func main() {
-	Sleep(5)
+	Sleep(5) // указываем время сколько будет спать
 }
 
 func Sleep(d int) {
-	<-time.After(time.Second * time.Duration(d))
+	<-time.After(time.Second * time.Duration(d)) // создает временную задержку на d секунд, где d - целочисленная переменная.
+	// Временная задержка выражается в виде временного интервала, умноженного на длительность времени.
 }

@@ -10,6 +10,8 @@ func main() {
 	fmt.Println(reverseStr(s))
 }
 
+// Однако, когда мы хотим манипулировать отдельными символами внутри строки, мы используем руны.
+// Руны представляют собой кодовые точки Юникода, которые позволяют нам обрабатывать символы разных языков и сценариев.
 func reverseString(str string) string {
 	runes := []rune(str)
 	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
@@ -18,6 +20,7 @@ func reverseString(str string) string {
 	return string(runes)
 }
 
+// толкаем вправо каждый элемент
 func reverseStr(s string) string {
 	var str string
 	for _, v := range s {

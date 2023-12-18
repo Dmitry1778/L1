@@ -7,12 +7,14 @@ import (
 
 func main() {
 	start := time.Now()
-	const N = 5
-	ch := make(chan string, 1)
-	timer := time.After(time.Second * N)
+	const N = 5                          // время по которому программа должна завершаться
+	ch := make(chan string, 1)           // буфферизированный канал
+	timer := time.After(time.Second * N) // сама функция которая создает таймер, который будет срабатывать через N секунд.
 
+	// чтение из канала
 	read(ch)
 
+	// цикл для отправления значений в канал
 	for {
 		select {
 		case <-timer:

@@ -7,6 +7,7 @@ import (
 	"strconv"
 )
 
+// Human cтруктура с произвольным набором полей
 type Human struct {
 	age    int
 	wight  int
@@ -15,11 +16,14 @@ type Human struct {
 	gender string
 }
 
+// Action - это структура для реализации встраивания методов от структуры Human
+// Она имеет все те же поля что и Human и все теже методы
 type Action struct {
 	human Human
 }
 
-func (h Human) selectHeight() *int {
+// selectHeight метод определенный для типа структуры Human.
+func (h *Human) selectHeight() *int {
 	scanner := bufio.NewScanner(os.Stdin)
 	fmt.Println("how tall are you?")
 	scanner.Scan()
@@ -33,7 +37,8 @@ func (h Human) selectHeight() *int {
 	return &newInputInt
 }
 
-func (h Human) selectGender() *string {
+// selectGender метод определенный для типа структуры Human.
+func (h *Human) selectGender() *string {
 	scanner := bufio.NewScanner(os.Stdin)
 	fmt.Println("You male or female?")
 	scanner.Scan()
@@ -42,10 +47,12 @@ func (h Human) selectGender() *string {
 	return &input
 }
 
+// Функция-конструктор которая создает объект
 func newAction(human Human) *Action {
 	return &Action{human: human}
 }
 
+// Action реализация c произвольными данными
 func (a Action) Action() *Action {
 	a.human.age = 22
 	a.human.name = "Dmitry"
@@ -61,4 +68,3 @@ func main() {
 }
 
 // https://www.youtube.com/watch?v=VVbqgRWDgzk&t=152s
-// Язык golang (GO) за 1 час. ООП - полное руководство.

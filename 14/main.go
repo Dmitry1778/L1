@@ -16,14 +16,14 @@ func main() {
 	fmt.Println(typeOf(num))
 	fmt.Println(typeOf(boolean))
 	fmt.Println(typeOf(ch))
-
+	fmt.Println("________________")
 	typeOfSwitch(float)
 	typeOfSwitch(num)
 	typeOfSwitch(boolean)
 }
 
 func typeOf(v interface{}) interface{} {
-	return reflect.TypeOf(v)
+	return reflect.TypeOf(v) // метод или функция, возвращающая тип данных переменной «v»
 }
 
 func typeOfSwitch(x interface{}) {
@@ -37,3 +37,5 @@ func typeOfSwitch(x interface{}) {
 	}
 	return
 }
+
+// x.(type) - это конструкция в языке программирования Go, используемая в операторе switch для проверки типа значения переменной x.

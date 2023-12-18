@@ -11,8 +11,10 @@ import (
 )
 
 func main() {
+	// создаем канал типа interface{} для представления значения любого типа
 	ch := make(chan interface{})
 
+	// создаем контекст для отмены
 	ctx, cancel := context.WithCancel(context.Background())
 
 	// Канал для записи сигнала
@@ -21,15 +23,16 @@ func main() {
 	// Генерация Ctrl+C в канал
 	signal.Notify(exitChannel, syscall.SIGINT)
 
-	g, ctx := errgroup.WithContext(ctx)
-	const N = 5
+	g, ctx := errgroup.WithContext(ctx) // это работает как и waitgroup, без указанния количества горутин в счетчик ожидания
+	const N = 5                         // можем указать количество воркеров
+	// Сначала у нас идёт постоянная запись в канал числа 42
 	for i := 0; i < N; i++ {
-		workerNum := i
+		workerNum := i // это необходимо потому что каждой горутине требуется свое уникальное значение
 		g.Go(func() error {
-			return worker(workerNum, ch, ctx)
+			return worker(workerNum, ch, ctx) // чтение из канала воркерами
 		})
 	}
-
+	// writerChannel чтение из канала
 	writerChannel(exitChannel, ch)
 	cancel()
 	err := g.Wait()
